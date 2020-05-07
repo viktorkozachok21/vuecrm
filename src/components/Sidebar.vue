@@ -1,5 +1,5 @@
 <template>
-  <ul class="sidenav app-sidenav open">
+  <ul class="sidenav app-sidenav" :class="{ open: isOpen }">
     <SidebarLink
     v-for="link in sidebarLinks"
     :key="link.url"
@@ -12,6 +12,9 @@
 import SidebarLink from "./links/SidebarLink";
 
 export default {
+  props: {
+    isOpen: Boolean
+  },
   data: () => ({
     sidebarLinks: [
       { title: "Рахунок", url: "/", exact: true },

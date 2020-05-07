@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "LinkButton",
+  name: "SidebarLink",
   props: {
     tag: String,
     link: Object

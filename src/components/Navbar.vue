@@ -2,31 +2,42 @@
   <nav class="navbar orange lighten-1">
     <div class="nav-wrapper">
       <div class="navbar-left">
-        <a href="#">
-          <i class="material-icons black-text">dehaze</i>
+        <a href="#" @click.prevent="$emit('toggleSidebar')">
+          <LinkIcon
+          className="black-text"
+          iconName="dehaze" />
         </a>
-        <span class="black-text">12.12.12</span>
+        <span class="black-text">{{ todayIs }}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
         <li>
-          <a class="dropdown-trigger black-text" href="#" data-target="dropdown">
-            USER NAME
-            <i class="material-icons right">arrow_drop_down</i>
+          <a class="dropdown-trigger black-text"
+          ref="dropdownUser"
+          href="#"
+          data-target="dropdown">
+          <span class="black-text">USER NAME</span>
+            <LinkIcon
+            className="right"
+            iconName="arrow_drop_down" />
           </a>
 
           <ul id='dropdown' class='dropdown-content'>
-            <li>
-              <a href="#" class="black-text">
-                <i class="material-icons">account_circle</i>Профиль
-              </a>
-            </li>
+            <NavbarLink
+            tag="li"
+            url="/profile"
+            title="Профіль"
+            iconClass="left"
+            iconName="account_circle"
+            />
             <li class="divider" tabindex="-1"></li>
-            <li>
-              <a href="#" class="black-text">
-                <i class="material-icons">assignment_return</i>Выйти
-              </a>
-            </li>
+            <NavbarLink
+            tag="li"
+            url="/logout"
+            title="Вийти"
+            iconClass="left"
+            iconName="assignment_return"
+            />
           </ul>
         </li>
       </ul>
@@ -35,7 +46,22 @@
 </template>
 
 <script>
+import NavbarLink from "./links/NavbarLink";
+import LinkIcon from "./links/LinkIcon";
+
 export default {
+  data: () => ({
+    todayIs: new Date().toDateString()
+  }),
+  mounted() {
+    M.Dropdown.init(this.$refs.dropdownUser, {
+      constrainWidth: true
+    })
+  },
+  components: {
+    LinkIcon,
+    NavbarLink
+  }
 }
 </script>
 
