@@ -1,8 +1,9 @@
 <template>
   <div class="black-text">
     <router-link
-    :to="linkTo"
     :tag="linkTag"
+    active-class="active orange lighten-3"
+    :to="linkTo"
     >
       <a href="#"
         :class="[...linkClassList]"

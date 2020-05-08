@@ -5,10 +5,10 @@
         <a href="#" @click.prevent="$emit('toggleSidebar')">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">{{ todayIs }}</span>
+        <span class="black-text">{{ todayIs | dateTimeFilter("datetime") }}</span>
       </div>
 
-      <ul class="right hide-on-small-and-down">
+      <ul class="right">
         <li>
           <a class="dropdown-trigger black-text"
           ref="dropdownUser"
@@ -18,7 +18,7 @@
           <i class="material-icons right">arrow_drop_down</i>
           </a>
 
-          <ul id='dropdown' class='dropdown-content'>
+          <ul id="dropdown" class="dropdown-content">
             <LinkWithIcon
             linkTag="li"
             linkTo="/profile"
@@ -30,7 +30,7 @@
             <li class="divider" tabindex="-1"></li>
             <LinkWithIcon
             linkTag="li"
-            linkTo="/logout"
+            linkTo="/login?message=logout"
             linkTitle="Вийти"
             :linkClassList="navbarLinksClasses"
             :iconClassList="navbarIconClasses"
@@ -48,7 +48,9 @@ import LinkWithIcon from "./links/LinkWithIcon";
 
 export default {
   data: () => ({
-    todayIs: new Date().toDateString(),
+    todayIs: new Date(),
+    dateInterval: null,
+    userDropdown: null,
     navbarLinksClasses: [
       "black-text"
     ],
@@ -57,9 +59,16 @@ export default {
     ]
   }),
   mounted() {
-    M.Dropdown.init(this.$refs.dropdownUser, {
+    this.todayInterval = setInterval(() => {
+      this.todayIs = new Date()
+    }, 1000)
+    this.userDropdown = M.Dropdown.init(this.$refs.dropdownUser, {
       constrainWidth: true
     })
+  },
+  beforeDestroy() {
+    clearInterval(this.todayInterval)
+    if (this.userDropdown && this.userDropdown.destroy) this.userDropdown.destroy()
   },
   components: {
     LinkWithIcon
@@ -67,5 +76,8 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+#dropdown {
+  transform: translateY(-4.3rem);
+}
 </style>

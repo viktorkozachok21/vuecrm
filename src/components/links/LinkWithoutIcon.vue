@@ -2,7 +2,7 @@
   <div class="black-text">
     <router-link
     :tag="linkTag"
-    active-class="active"
+    active-class="active orange lighten-3"
     :to="linkTo"
     :exact="linkExact"
     >
@@ -27,6 +27,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

@@ -31,10 +31,11 @@ export default {
     mainLinkClassList: [
       "btn-floating",
       "btn-large",
-      "blue"
+      "orange",
+      "darken-2"
     ],
     mainIconClasses: [
-      "large"
+      "large",
     ]
   }),
   components: {
