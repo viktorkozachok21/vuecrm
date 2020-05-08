@@ -27,12 +27,12 @@
         input-type="text"
         input-label="Ім'я"
         input-help-text="Введіть ваше ім'я"
-        v-model.trim="username"
-        :input-text-validate="$v.username.$dirty && !$v.username.required"
+        v-model.trim="userName"
+        :input-text-validate="$v.userName.$dirty && !$v.userName.required"
       />
       <p>
         <label>
-          <input type="checkbox" v-model="agreedWithRules">
+          <input type="checkbox" v-model="agreedWithRules" />
           <span>З правилами погоджуюся</span>
         </label>
       </p>
@@ -66,7 +66,7 @@ export default {
   data: () => ({
     email: "",
     password: "",
-    username: "",
+    userName: "",
     agreedWithRules: false,
     buttonClasses: [
       "auth-submit"
@@ -75,7 +75,7 @@ export default {
   validations: {
     email: { email, required },
     password: { required, minLength: minLength(6) },
-    username: { required },
+    userName: { required },
     agreedWithRules: { checked: v => v }
   },
   methods: {
@@ -87,7 +87,7 @@ export default {
       const formData = {
         email: this.email,
         password: this.password,
-        username: this.username
+        name: this.userName
       }
       console.log(formData)
       this.$router.push("/")
