@@ -3,17 +3,17 @@
     <LinkWithoutIcon
       v-for="link in sidebarLinks"
       :key="link.url"
-      linkTag="li"
-      :linkTo="link.url"
-      :linkExact="link.exact"
-      :linkTitle="link.title"
-      :linkClassList="sidebarLinksClasses"
+      link-tag="li"
+      :link-to="link.url"
+      :link-exact="link.exact"
+      :link-title="link.title"
+      :link-class-list="sidebarLinksClasses"
     />
   </ul>
 </template>
 
 <script>
-import LinkWithoutIcon from "./links/LinkWithoutIcon";
+import LinkWithoutIcon from "./links/LinkWithoutIcon.vue";
 
 export default {
   props: {

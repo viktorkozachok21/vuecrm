@@ -21,21 +21,21 @@
 
           <ul id="dropdown" class="dropdown-content">
             <LinkWithIcon
-              linkTag="li"
-              linkTo="/profile"
-              linkTitle="Профіль"
-              :linkClassList="navbarLinksClasses"
-              :iconClassList="navbarIconClasses"
-              iconName="account_circle"
+              link-tag="li"
+              link-to="/profile"
+              link-title="Профіль"
+              :link-class-list="navbarLinksClasses"
+              :icon-class-list="navbarIconClasses"
+              icon-name="account_circle"
             />
             <li class="divider" tabindex="-1"></li>
             <LinkWithIcon
-              linkTag="li"
-              linkTo="/login?message=logout"
-              linkTitle="Вийти"
-              :linkClassList="navbarLinksClasses"
-              :iconClassList="navbarIconClasses"
-              iconName="assignment_return"
+              link-tag="li"
+              link-to="/login?message=logout"
+              link-title="Вийти"
+              :link-class-list="navbarLinksClasses"
+              :icon-class-list="navbarIconClasses"
+              icon-name="assignment_return"
             />
           </ul>
         </li>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import LinkWithIcon from "./links/LinkWithIcon";
+import LinkWithIcon from "./links/LinkWithIcon.vue";
 
 export default {
   data: () => ({

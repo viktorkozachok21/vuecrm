@@ -43,9 +43,9 @@
 
 <script>
 import { email, required, minLength } from "vuelidate/lib/validators";
-import FormInputField from "@/components/formComponents/FormInputField";
-import FormButton from "@/components/formComponents/FormButton";
-import LinkWithoutIcon from "@/components/links/LinkWithoutIcon";
+import FormInputField from "@/components/formComponents/FormInputField.vue";
+import FormButton from "@/components/formComponents/FormButton.vue";
+import LinkWithoutIcon from "@/components/links/LinkWithoutIcon.vue";
 
 export default {
   name: "Login",
