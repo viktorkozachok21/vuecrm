@@ -3,9 +3,7 @@
     <div class="nav-wrapper">
       <div class="navbar-left">
         <a href="#" @click.prevent="$emit('toggleSidebar')">
-          <LinkIcon
-          className="black-text"
-          iconName="dehaze" />
+          <i class="material-icons black-text">dehaze</i>
         </a>
         <span class="black-text">{{ todayIs }}</span>
       </div>
@@ -17,25 +15,25 @@
           href="#"
           data-target="dropdown">
           <span class="black-text">USER NAME</span>
-            <LinkIcon
-            className="right"
-            iconName="arrow_drop_down" />
+          <i class="material-icons right">arrow_drop_down</i>
           </a>
 
           <ul id='dropdown' class='dropdown-content'>
-            <NavbarLink
-            tag="li"
-            url="/profile"
-            title="Профіль"
-            iconClass="left"
+            <LinkWithIcon
+            linkTag="li"
+            linkTo="/profile"
+            linkTitle="Профіль"
+            :linkClassList="navbarLinksClasses"
+            :iconClassList="navbarIconClasses"
             iconName="account_circle"
             />
             <li class="divider" tabindex="-1"></li>
-            <NavbarLink
-            tag="li"
-            url="/logout"
-            title="Вийти"
-            iconClass="left"
+            <LinkWithIcon
+            linkTag="li"
+            linkTo="/logout"
+            linkTitle="Вийти"
+            :linkClassList="navbarLinksClasses"
+            :iconClassList="navbarIconClasses"
             iconName="assignment_return"
             />
           </ul>
@@ -46,12 +44,17 @@
 </template>
 
 <script>
-import NavbarLink from "./links/NavbarLink";
-import LinkIcon from "./links/LinkIcon";
+import LinkWithIcon from "./links/LinkWithIcon";
 
 export default {
   data: () => ({
-    todayIs: new Date().toDateString()
+    todayIs: new Date().toDateString(),
+    navbarLinksClasses: [
+      "black-text"
+    ],
+    navbarIconClasses: [
+      "left"
+    ]
   }),
   mounted() {
     M.Dropdown.init(this.$refs.dropdownUser, {
@@ -59,8 +62,7 @@ export default {
     })
   },
   components: {
-    LinkIcon,
-    NavbarLink
+    LinkWithIcon
   }
 }
 </script>

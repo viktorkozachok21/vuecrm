@@ -1,15 +1,18 @@
 <template>
   <ul class="sidenav app-sidenav" :class="{ open: isOpen }">
-    <SidebarLink
+    <LinkWithoutIcon
     v-for="link in sidebarLinks"
     :key="link.url"
-    tag="li"
-    :link="link" />
+    linkTag="li"
+    :linkTo="link.url"
+    :linkExact="link.exact"
+    :linkTitle="link.title"
+    :linkClassList="sidebarLinksClasses" />
   </ul>
 </template>
 
 <script>
-import SidebarLink from "./links/SidebarLink";
+import LinkWithoutIcon from "./links/LinkWithoutIcon";
 
 export default {
   props: {
@@ -22,9 +25,16 @@ export default {
       { title: "Планування", url: "/planning" },
       { title: "Новий запис", url: "/record" },
       { title: "Категорії", url: "/categories" }
+    ],
+    sidebarLinksClasses: [
+      "waves-effect",
+      "waves-orange",
+      "pointer"
     ]
   }),
-  components: { SidebarLink }
+  components: {
+    LinkWithoutIcon
+  }
 }
 </script>
 
