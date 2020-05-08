@@ -1,61 +1,66 @@
 <template>
   <form class="card auth-card">
     <div class="card-content">
-      <span class="card-title">Домашняя бухгалтерия</span>
-      <div class="input-field">
-        <input
-            id="email"
-            type="text"
-        >
-        <label for="email">Email</label>
-        <small class="helper-text invalid">Email</small>
-      </div>
-      <div class="input-field">
-        <input
-            id="password"
-            type="password"
-            class="validate"
-        >
-        <label for="password">Пароль</label>
-        <small class="helper-text invalid">Password</small>
-      </div>
-      <div class="input-field">
-        <input
-            id="name"
-            type="text"
-            class="validate"
-        >
-        <label for="name">Имя</label>
-        <small class="helper-text invalid">Name</small>
-      </div>
+      <span class="card-title">Домашня бухгалтерія</span>
+      <FormInputField
+      inputId="email"
+      inputType="text"
+      inputLabel="Email"
+      inputHelpText="Email"
+      />
+      <FormInputField
+      inputId="password"
+      inputType="password"
+      inputLabel="Пароль"
+      inputHelpText="Password"
+      />
+      <FormInputField
+      inputId="name"
+      inputType="text"
+      inputLabel="Ім'я"
+      inputHelpText="Name"
+      />
       <p>
         <label>
           <input type="checkbox" />
-          <span>С правилами согласен</span>
+          <span>З правилами погоджуюся</span>
         </label>
       </p>
     </div>
     <div class="card-action">
-      <div>
-        <button
-            class="btn waves-effect waves-light auth-submit"
-            type="submit"
-        >
-          Зарегистрироваться
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
-
+      <FormButton
+      buttonType="submit"
+      buttonTitle="Зареєструватись"
+      :buttonClasses="buttonClasses"
+      iconName="send"
+      />
       <p class="center">
-        Уже есть аккаунт?
-        <a href="/">Войти!</a>
+        Вже зареєстровані?
+        <LinkWithoutIcon
+        linkTo="/login"
+        linkTitle="Вхід"
+        />
       </p>
     </div>
   </form>
 </template>
 
 <script>
+import FormInputField from "@/components/formComponents/FormInputField";
+import FormButton from "@/components/formComponents/FormButton";
+import LinkWithoutIcon from "@/components/links/LinkWithoutIcon";
+
 export default {
+  data: () => ({
+    buttonClasses: [
+      "auth-submit"
+    ]
+  }),
+  components: {
+    FormInputField,
+    FormButton,
+    LinkWithoutIcon
+  }
 }
 </script>
 

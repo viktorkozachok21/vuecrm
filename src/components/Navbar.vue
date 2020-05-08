@@ -11,30 +11,31 @@
       <ul class="right">
         <li>
           <a class="dropdown-trigger black-text"
-          ref="dropdownUser"
-          href="#"
-          data-target="dropdown">
+            ref="dropdownUser"
+            href="#"
+            data-target="dropdown"
+          >
           <span class="black-text">USER NAME</span>
           <i class="material-icons right">arrow_drop_down</i>
           </a>
 
           <ul id="dropdown" class="dropdown-content">
             <LinkWithIcon
-            linkTag="li"
-            linkTo="/profile"
-            linkTitle="Профіль"
-            :linkClassList="navbarLinksClasses"
-            :iconClassList="navbarIconClasses"
-            iconName="account_circle"
+              linkTag="li"
+              linkTo="/profile"
+              linkTitle="Профіль"
+              :linkClassList="navbarLinksClasses"
+              :iconClassList="navbarIconClasses"
+              iconName="account_circle"
             />
             <li class="divider" tabindex="-1"></li>
             <LinkWithIcon
-            linkTag="li"
-            linkTo="/login?message=logout"
-            linkTitle="Вийти"
-            :linkClassList="navbarLinksClasses"
-            :iconClassList="navbarIconClasses"
-            iconName="assignment_return"
+              linkTag="li"
+              linkTo="/login?message=logout"
+              linkTitle="Вийти"
+              :linkClassList="navbarLinksClasses"
+              :iconClassList="navbarIconClasses"
+              iconName="assignment_return"
             />
           </ul>
         </li>

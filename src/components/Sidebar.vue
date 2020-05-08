@@ -1,13 +1,14 @@
 <template>
   <ul class="sidenav app-sidenav" :class="{ open: isOpen }">
     <LinkWithoutIcon
-    v-for="link in sidebarLinks"
-    :key="link.url"
-    linkTag="li"
-    :linkTo="link.url"
-    :linkExact="link.exact"
-    :linkTitle="link.title"
-    :linkClassList="sidebarLinksClasses" />
+      v-for="link in sidebarLinks"
+      :key="link.url"
+      linkTag="li"
+      :linkTo="link.url"
+      :linkExact="link.exact"
+      :linkTitle="link.title"
+      :linkClassList="sidebarLinksClasses"
+    />
   </ul>
 </template>
 

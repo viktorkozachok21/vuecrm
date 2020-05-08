@@ -1,15 +1,16 @@
 <template>
-  <div class="black-text">
+  <div class="black-text material-link">
     <router-link
-    :tag="linkTag"
-    active-class="active orange lighten-3"
-    :to="linkTo"
+      :tag="linkTag"
+      active-class="active orange lighten-3"
+      :to="linkTo"
     >
       <a href="#"
         :class="[...linkClassList]"
-        >
+      >
         <i class="material-icons"
-          :class="[...iconClassList]">
+          :class="[...iconClassList]"
+        >
           {{ iconName }}
         </i>
         {{ linkTitle }}
@@ -33,4 +34,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 </style>

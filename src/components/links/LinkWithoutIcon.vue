@@ -1,14 +1,14 @@
 <template>
-  <div class="black-text">
+  <div class="black-text material-link">
     <router-link
-    :tag="linkTag"
-    active-class="active orange lighten-3"
-    :to="linkTo"
-    :exact="linkExact"
+      :tag="linkTag"
+      active-class="active orange lighten-3"
+      :to="linkTo"
+      :exact="linkExact"
     >
       <a href="#"
         :class="[...linkClassList]"
-        >
+      >
         {{ linkTitle }}
       </a>
     </router-link>
@@ -27,3 +27,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

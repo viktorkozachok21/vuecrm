@@ -1,8 +1,15 @@
 <template>
   <div class="app-main-layout">
-    <Navbar @toggleSidebar="showSidebar = !showSidebar"/>
-    <Sidebar :isOpen="showSidebar"/>
-    <main class="app-content" :class="{ full: !showSidebar}">
+    <Navbar
+      @toggleSidebar="showSidebar = !showSidebar"
+    />
+    <Sidebar
+      :isOpen="showSidebar"
+    />
+    <main
+      class="app-content" 
+      :class="{ full: !showSidebar}"
+    >
       <div class="app-page">
         <router-view />
       </div>
@@ -10,10 +17,10 @@
 
     <div class="fixed-action-btn">
       <LinkWithIcon
-      linkTo="/record"
-      :linkClassList="mainLinkClassList"
-      :iconClassList="mainIconClasses"
-      iconName="add"
+        linkTo="/record"
+        :linkClassList="mainLinkClassList"
+        :iconClassList="mainIconClasses"
+        iconName="add"
       />
     </div>
   </div>
