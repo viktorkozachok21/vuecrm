@@ -23,23 +23,17 @@
         || ($v.password.$dirty && !$v.password.minLength)"
       />
       <FormInputField
-        input-id="name"
+        input-id="username"
         input-type="text"
         input-label="Ім'я"
-        :inputHelpText="!$v.username.required ? 'Введіть пароль'
-        : `Мінімальна довжина паролю ${$v.username.$params.minLength.min} символів. Зараз ${username.length}`"
+        input-help-text="Введіть ваше ім'я"
         v-model.trim="username"
-        :input-text-validate="($v.username.$dirty && !$v.username.required)
-        || ($v.username.$dirty && !$v.username.minLength)"
+        :input-text-validate="$v.username.$dirty && !$v.username.required"
       />
       <p>
         <label>
-          <FormInputField
-            input-id="agreedWithRules"
-            input-type="checkbox"
-            input-label="З правилами погоджуюся"
-            input-help-text="Name"
-          />
+          <input type="checkbox" v-model="agreedWithRules">
+          <span>З правилами погоджуюся</span>
         </label>
       </p>
     </div>
@@ -79,10 +73,10 @@ export default {
     ]
   }),
   validations: {
-      email: { email, required },
-      password: { required, minLength: minLength(6) },
-      username: { required },
-      agreedWithRules: { checked: v => v }
+    email: { email, required },
+    password: { required, minLength: minLength(6) },
+    username: { required },
+    agreedWithRules: { checked: v => v }
   },
   methods: {
     submitHandler() {
@@ -92,7 +86,8 @@ export default {
       }
       const formData = {
         email: this.email,
-        password: this.password
+        password: this.password,
+        username: this.username
       }
       console.log(formData)
       this.$router.push("/")
@@ -105,6 +100,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css" scoped>
-</style>

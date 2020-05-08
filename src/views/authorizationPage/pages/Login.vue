@@ -57,8 +57,8 @@ export default {
     ]
   }),
   validations: {
-      email: { email, required },
-      password: { required, minLength: minLength(6) }
+    email: { email, required },
+    password: { required, minLength: minLength(6) }
   },
   methods: {
     submitHandler() {
@@ -81,6 +81,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css" scoped>
-</style>

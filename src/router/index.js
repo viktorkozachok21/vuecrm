@@ -1,13 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { LoginRoutes } from "../views/loginPage/router.js";
+import { AuthorizationRoutes } from "../views/authorizationPage/router.js";
 import { ProfileRoutes } from "../views/profilePage/router.js";
 import { RecordRoutes } from "../views/recordPage/router.js";
 
 Vue.use(VueRouter);
 
 const routes = [
-  ...LoginRoutes,
+  ...AuthorizationRoutes,
   {
     path: "/",
     name: "home",

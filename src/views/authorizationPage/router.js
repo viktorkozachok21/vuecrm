@@ -1,7 +1,7 @@
-export const LoginRoutes = [
+export const AuthorizationRoutes = [
   {
     path: "/login",
-    component: () => import("./LoginModule.vue"),
+    component: () => import("./AuthorizationModule.vue"),
     children: [
       {
         path: "/",
