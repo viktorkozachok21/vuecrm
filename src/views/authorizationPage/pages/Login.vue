@@ -16,7 +16,7 @@
         input-id="password"
         input-type="password"
         input-label="Пароль"
-        :inputHelpText="!$v.password.required ? 'Введіть пароль'
+        :input-help-text="!$v.password.required ? 'Введіть пароль'
         : `Мінімальна довжина паролю ${$v.password.$params.minLength.min} символів. Зараз ${password.length}`"
         v-model.trim="password"
         :input-text-validate="($v.password.$dirty && !$v.password.required)

@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import AuthorizationStore from "@/views/authorizationPage/auth.store";
 import HomeStore from "@/views/homePage/home.store";
+import CategoryStore from "@/views/categoriesPage/category.store";
 
 Vue.use(Vuex);
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
   },
   modules: {
     AuthorizationStore,
-    HomeStore
+    HomeStore,
+    CategoryStore
   }
 });

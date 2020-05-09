@@ -32,7 +32,6 @@ export default {
 
     async logoutActiveUser({ dispatch }) {
       await firebase.auth().signOut()
-      commit('CLEAR_ACTIVE_USER_INFO')
     }
   }
 }
