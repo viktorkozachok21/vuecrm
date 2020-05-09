@@ -128,8 +128,8 @@ export default {
 
           // Update active user account
           const account = this.recordType === 'income'
-          ? parseInt(this.getActiveUserInfo.account) + parseInt(this.recordSum)
-          : parseInt(this.getActiveUserInfo.account) - parseInt(this.recordSum)
+          ? +this.getActiveUserInfo.account + +this.recordSum
+          : +this.getActiveUserInfo.account - +this.recordSum
 
           await this.$store.dispatch('updateActiveUserInfo', { account })
           this.recordSum = 10
