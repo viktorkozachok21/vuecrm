@@ -10,7 +10,7 @@
 
       <ul class="right">
         <li>
-          <a class="dropdown-trigger black-text"
+          <a class="dropdown-trigger black-text active-user-name"
             ref="dropdownUser"
             href="#"
             data-target="dropdown"
@@ -91,5 +91,9 @@ export default {
 <style lang="scss" scoped>
 #dropdown {
   transform: translateY(-4.3rem);
+}
+
+.active-user-name {
+  min-width: 150px;
 }
 </style>

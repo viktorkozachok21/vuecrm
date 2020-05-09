@@ -1,6 +1,6 @@
 <template>
   <button
-    class="btn waves-effect waves-light"
+    class="btn waves-effect waves-light teal darken-3"
     :class="[...buttonCustomClass]"
   >
     <i

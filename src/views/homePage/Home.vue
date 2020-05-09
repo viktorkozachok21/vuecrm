@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Счет</h3>
+      <h3>Рахунок</h3>
 
       <ButtonWithIcon
         :button-custom-class="buttonCustomClass"

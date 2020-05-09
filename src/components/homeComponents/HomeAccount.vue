@@ -1,6 +1,6 @@
 <template>
   <div class="col s12 m5 l3">
-    <div class="card light-blue bill-card">
+    <div class="card teal darken-3 bill-card">
       <div class="card-content white-text">
         <span class="card-title">Рахунок в валюті</span>
 
