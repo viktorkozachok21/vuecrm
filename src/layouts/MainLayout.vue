@@ -1,27 +1,30 @@
 <template>
-  <div class="app-main-layout">
-    <Navbar
-      @toggleSidebar="showSidebar = !showSidebar"
-    />
-    <Sidebar
-      :isOpen="showSidebar"
-    />
-    <main
-      class="app-content"
-      :class="{ full: !showSidebar}"
-    >
-      <div class="app-page">
-        <router-view />
-      </div>
-    </main>
-
-    <div class="fixed-action-btn">
-      <LinkWithIcon
-        link-to="/record"
-        :link-class-list="mainLinkClassList"
-        :icon-class-list="mainIconClasses"
-        icon-name="add"
+  <div>
+    <Loader v-if="loading"/>
+    <div v-else class="app-main-layout">
+      <Navbar
+        @toggleSidebar="showSidebar = !showSidebar"
       />
+      <Sidebar
+        :isOpen="showSidebar"
+      />
+      <main
+        class="app-content"
+        :class="{ full: !showSidebar}"
+      >
+        <div class="app-page">
+          <router-view />
+        </div>
+      </main>
+
+      <div class="fixed-action-btn">
+        <LinkWithIcon
+          link-to="/record"
+          :link-class-list="mainLinkClassList"
+          :icon-class-list="mainIconClasses"
+          icon-name="add"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -35,6 +38,7 @@ export default {
   name: "MainLayout",
   data: () => ({
     showSidebar: false,
+    loading: true,
     mainLinkClassList: [
       "btn-floating",
       "btn-large",
@@ -45,6 +49,13 @@ export default {
       "large",
     ]
   }),
+  async mounted() {
+    if (!Object.keys(this.$store.getters.getActiveUserInfo).length) {
+      await this.$store.dispatch('fetchInfoAboutActiveUser')
+    }
+
+    this.loading = false
+  },
   components: {
     Navbar,
     Sidebar,

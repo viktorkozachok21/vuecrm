@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import AuthorizationStore from "@/views/authorizationPage/auth.store";
+import HomeStore from "@/views/homePage/home.store";
 
 Vue.use(Vuex);
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     getAuthError: state => state.error
   },
   modules: {
-    AuthorizationStore
+    AuthorizationStore,
+    HomeStore
   }
 });

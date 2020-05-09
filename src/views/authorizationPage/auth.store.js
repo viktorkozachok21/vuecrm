@@ -30,8 +30,9 @@ export default {
       return user ? user.uid : null
     },
 
-    async logoutActiveUser() {
+    async logoutActiveUser({ dispatch }) {
       await firebase.auth().signOut()
+      commit('CLEAR_ACTIVE_USER_INFO')
     }
   }
 }

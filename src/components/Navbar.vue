@@ -15,7 +15,7 @@
             href="#"
             data-target="dropdown"
           >
-          <span class="black-text">USER NAME</span>
+          <span class="black-text">{{ activeUserName }}</span>
           <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -24,7 +24,7 @@
               link-tag="li"
               link-to="/profile"
               link-title="Профіль"
-              :link-class-list="navbarLinksClasses"
+              :link-class-list="navbarLinkClasses"
               :icon-class-list="navbarIconClasses"
               icon-name="account_circle"
             />
@@ -34,7 +34,7 @@
               link-to="/login?message=logout"
               @click.native="logout"
               link-title="Вийти"
-              :link-class-list="navbarLinksClasses"
+              :link-class-list="navbarLinkClasses"
               :icon-class-list="navbarIconClasses"
               icon-name="assignment_return"
             />
@@ -53,13 +53,18 @@ export default {
     todayIs: new Date(),
     dateInterval: null,
     userDropdown: null,
-    navbarLinksClasses: [
+    navbarLinkClasses: [
       "black-text"
     ],
     navbarIconClasses: [
       "left"
     ]
   }),
+  computed: {
+    activeUserName() {
+      return this.$store.getters.getActiveUserInfo.name
+    }
+  },
   mounted() {
     this.todayInterval = setInterval(() => {
       this.todayIs = new Date()
