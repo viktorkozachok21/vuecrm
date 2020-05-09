@@ -1,11 +1,26 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import AuthorizationStore from "@/views/authorizationPage/auth.store";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    error: null
+  },
+  mutations: {
+    SET_ERROR(state, error) {
+      state.error = error
+    },
+    CLEAR_ERROR(state) {
+      state.error = null
+    }
+  },
   actions: {},
-  modules: {}
+  getters: {
+    getAuthError: state => state.error
+  },
+  modules: {
+    AuthorizationStore
+  }
 });

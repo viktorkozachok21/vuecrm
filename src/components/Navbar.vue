@@ -32,6 +32,7 @@
             <LinkWithIcon
               link-tag="li"
               link-to="/login?message=logout"
+              @click.native="logout"
               link-title="Вийти"
               :link-class-list="navbarLinksClasses"
               :icon-class-list="navbarIconClasses"
@@ -66,6 +67,11 @@ export default {
     this.userDropdown = M.Dropdown.init(this.$refs.dropdownUser, {
       constrainWidth: true
     })
+  },
+  methods: {
+    async logout() {
+      await this.$store.dispatch('logoutActiveUser')
+    }
   },
   beforeDestroy() {
     clearInterval(this.todayInterval)

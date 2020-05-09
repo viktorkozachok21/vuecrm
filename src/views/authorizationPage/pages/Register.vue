@@ -27,8 +27,8 @@
         input-type="text"
         input-label="Ім'я"
         input-help-text="Введіть ваше ім'я"
-        v-model.trim="userName"
-        :input-text-validate="$v.userName.$dirty && !$v.userName.required"
+        v-model.trim="username"
+        :input-text-validate="$v.username.$dirty && !$v.username.required"
       />
       <p>
         <label>
@@ -66,7 +66,7 @@ export default {
   data: () => ({
     email: "",
     password: "",
-    userName: "",
+    username: "",
     agreedWithRules: false,
     buttonClasses: [
       "auth-submit"
@@ -75,22 +75,26 @@ export default {
   validations: {
     email: { email, required },
     password: { required, minLength: minLength(6) },
-    userName: { required },
+    username: { required },
     agreedWithRules: { checked: v => v }
   },
   methods: {
-    submitHandler() {
+    async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
       }
+
       const formData = {
         email: this.email,
         password: this.password,
-        name: this.userName
+        name: this.username
       }
-      console.log(formData)
-      this.$router.push("/")
+
+      try {
+        await this.$store.dispatch('registerNewUser', formData)
+        this.$router.push("/")
+      } catch (error) {}
     }
   },
   components: {
