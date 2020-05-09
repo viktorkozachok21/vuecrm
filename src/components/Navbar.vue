@@ -76,6 +76,7 @@ export default {
   methods: {
     async logout() {
       await this.$store.dispatch('logoutActiveUser')
+      this.$store.commit('CLEAR_ACTIVE_USER_INFO')
     }
   },
   beforeDestroy() {

@@ -16,7 +16,7 @@
             {{ category.title }}
             </option>
           </select>
-          <label>Выберите категорию</label>
+          <label>Оберіть категорію</label>
         </div>
 
         <FormInputField

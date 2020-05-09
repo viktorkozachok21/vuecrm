@@ -40,9 +40,6 @@ import FormButton from "../formComponents/FormButton.vue"
 
 export default {
   name: "CategoryCreate",
-  props: {
-
-  },
   data: () => ({
     categoryTitle: "",
     categoryLimit: 100

@@ -13,15 +13,36 @@ export default {
     }
   },
   actions: {
+    async updateActiveUserInfo({ dispatch, commit, getters }, toUpdate) {
+      try {
+        const uid = await dispatch('getActiveUserUID')
+        const updateData = {...getters.getActiveUserInfo, ...toUpdate}
+        await firebase.database().ref(`/users/${uid}/info`).update(updateData)
+        commit('SET_ACTIVE_USER_INFO', updateData)
+      } catch(error) {
+        commit('SET_ERROR', error)
+        throw error
+      }
+    },
     async fetchInfoAboutActiveUser({ dispatch, commit }) {
-      const uid = await dispatch('getActiveUserUID')
-      const activeUserInfo = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val()
-      commit('SET_ACTIVE_USER_INFO', activeUserInfo)
+      try {
+        const uid = await dispatch('getActiveUserUID')
+        const activeUserInfo = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val()
+        commit('SET_ACTIVE_USER_INFO', activeUserInfo)
+      } catch(error) {
+        commit('SET_ERROR', error)
+        throw error
+      }
     },
     async fetchUserCurrency() {
-      const key = process.env.VUE_APP_API_FIXER
-      const response = await fetch(`http://data.fixer.io/api/latest?access_key=${key}&symbols=USD,EUR,UAH`)
-      return await response.json()
+      try {
+        const key = process.env.VUE_APP_API_FIXER
+        const response = await fetch(`http://data.fixer.io/api/latest?access_key=${key}&symbols=USD,EUR,UAH`)
+        return await response.json()
+      } catch(error) {
+        commit('SET_ERROR', error)
+        throw error
+      }
     }
   },
   getters: {
