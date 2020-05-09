@@ -6,13 +6,13 @@ export const RecordRoutes = [
       {
         path: "/",
         name: "record",
-        meta: { layout: "main" },
+        meta: { layout: "main", auth: true },
         component: () => import("./pages/Record.vue")
       },
       {
         path: "/detail",
         name: "detail",
-        meta: { layout: "main" },
+        meta: { layout: "main", auth: true },
         component: () => import("./pages/Detail.vue")
       },
     ]

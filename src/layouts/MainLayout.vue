@@ -33,6 +33,7 @@
 import Navbar from "@/components/Navbar.vue";
 import Sidebar from "@/components/Sidebar.vue";
 import LinkWithIcon from "@/components/links/LinkWithIcon.vue";
+import messages from "@/utils/messages"
 
 export default {
   name: "MainLayout",
@@ -49,6 +50,16 @@ export default {
       "large",
     ]
   }),
+  computed: {
+    authError() {
+      return this.$store.getters.getAuthError
+    }
+  },
+  watch: {
+    authError(firebaseError) {
+      this.$error(messages[firebaseError.code] || 'Під час обробки запиту виникла помилка' )
+    }
+  },
   async mounted() {
     if (!Object.keys(this.$store.getters.getActiveUserInfo).length) {
       await this.$store.dispatch('fetchInfoAboutActiveUser')

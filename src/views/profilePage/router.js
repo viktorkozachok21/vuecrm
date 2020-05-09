@@ -6,7 +6,7 @@ export const ProfileRoutes = [
       {
         path: "/",
         name: "profile",
-        meta: { layout: "main" },
+        meta: { layout: "main", auth: true },
         component: () => import("./pages/Profile.vue")
       }
     ]
