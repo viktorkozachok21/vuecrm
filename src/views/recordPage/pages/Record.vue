@@ -5,9 +5,9 @@
     </div>
     <Loader v-if="loading"/>
     <p v-else-if="!categories.length" class="center">
-      Категорій не знайдено
+      {{ 'NoCategories' | localizeFilter }}
       <router-link to="/categories">
-        Додати нову категорію
+        {{ 'AddFirst' | localizeFilter }}
       </router-link>
     </p>
     <form v-else class="form" @submit.prevent="submitHandler">
@@ -21,7 +21,7 @@
           {{ category.title }}
           </option>
         </select>
-        <label>Оберіть категорію</label>
+        <label>{{ 'SelectCategory' | localizeFilter }}</label>
       </div>
       <p>
         <label>
@@ -32,7 +32,7 @@
             value="income"
             v-model="recordType"
           />
-          <span>Дохід</span>
+          <span>{{ 'Income' | localizeFilter }}</span>
         </label>
       </p>
       <p>
@@ -44,15 +44,15 @@
             value="outcome"
             v-model="recordType"
           />
-          <span>Витрати</span>
+          <span>{{ 'Outcome' | localizeFilter }}</span>
         </label>
       </p>
       <FormInputField
         input-id="record-sum"
         input-type="number"
-        input-label="Сума"
-        :input-help-text="!$v.recordSum.required ? 'Введіть суму'
-          : `Мінімальне значення ${$v.recordSum.$params.minValue.min}`"
+        :input-label="'Sum' | localizeFilter"
+        :input-help-text="!$v.recordSum.required ? localize('EnterSum')
+          : `${localize('Message_MinLength')} ${$v.recordSum.$params.minValue.min}`"
         v-model.trim="recordSum"
         :input-text-validate="($v.recordSum.$dirty && !$v.recordSum.required)
           || ($v.recordSum.$dirty && !$v.recordSum.minValue)"
@@ -60,8 +60,8 @@
       <FormInputField
         input-id="record-description"
         input-type="text"
-        input-label="Опис"
-        input-help-text="Введіть опис"
+        :input-label="'Description' | localizeFilter"
+        :input-help-text="'Message_EnterDescription' | localizeFilter"
         v-model.trim="recordDescription"
         :input-text-validate="$v.recordDescription.$dirty && !$v.recordDescription.required"
       />
@@ -79,6 +79,7 @@ import { required, minValue } from "vuelidate/lib/validators"
 import { mapGetters } from "vuex"
 import FormInputField from "@/components/formComponents/FormInputField.vue"
 import FormButton from "@/components/formComponents/FormButton.vue"
+import { localizeFilter } from "@/filters/localize.filter"
 
 export default {
   name: "Record",
@@ -109,10 +110,13 @@ export default {
     setTimeout(() => this.categoriesSelect = M.FormSelect.init(this.$refs.categoriesSelect), 0)
   },
   validations: {
-    recordSum: { required, minValue: minValue(1) },
+    recordSum: { required, minValue: minValue(10) },
     recordDescription: { required }
   },
   methods: {
+    localize(value) {
+      return localizeFilter(value)
+    },
     async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch()
@@ -138,10 +142,10 @@ export default {
           this.recordSum = 10
           this.recordDescription = ""
           this.$v.$reset()
-          this.$message("Новий запис успішно додано")
+          this.$message(localizeFilter('RecordHasBeenCreated'))
         } catch (error) {}
       } else {
-        this.$message(`Недостатньо коштів на рахунку (${this.recordSum - this.getActiveUserInfo.account})`)
+        this.$message(`${this.localize('NotEnoughMoney')} (${this.recordSum - this.getActiveUserInfo.account})`)
       }
     }
   },

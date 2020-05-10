@@ -7,7 +7,7 @@
       <th>{{ 'Date' | localizeFilter }}</th>
       <th>{{ 'Category' | localizeFilter }}</th>
       <th>{{ 'Type' | localizeFilter }}</th>
-      <th>{{ 'Detail' | localizeFilter }}</th>
+      <th>{{ 'OpenRecord' | localizeFilter }}</th>
     </tr>
     </thead>
 
@@ -30,7 +30,6 @@
       </td>
       <td class="center">
         <FormButton
-          v-tooltip-directive="'Переглянути запис'"
           :button-custom-class="buttonCustomClass"
           icon-name="open_in_new"
           @click.native="$router.push(`/detail/${record.id}`)"

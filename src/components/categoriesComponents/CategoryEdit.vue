@@ -15,22 +15,22 @@
             {{ category.title }}
             </option>
           </select>
-          <label>Оберіть категорію</label>
+          <label>{{ 'SelectCategory' | localizeFilter }}</label>
         </div>
         <FormInputField
           input-id="category-title"
           input-type="text"
-          input-label="Назва категорії"
-          input-help-text="Введіть назву категорії"
+          :input-label="'Category' | localizeFilter"
+          :input-help-text="'Message_CategoryTitle' | localizeFilter"
           v-model.trim="categoryTitle"
           :input-text-validate="$v.categoryTitle.$dirty && !$v.categoryTitle.required"
         />
         <FormInputField
           input-id="category-limit"
           input-type="number"
-          input-label="Ліміт бюджету"
-          :input-help-text="!$v.categoryLimit.required ? 'Введіть ліміт'
-            : `Мінімальне значення ${$v.categoryLimit.$params.minValue.min}`"
+          :input-label="'Limit' | localizeFilter"
+          :input-help-text="!$v.categoryLimit.required ? localize('Limit')
+            : `${localize('Message_MinLength')} ${$v.categoryLimit.$params.minValue.min}`"
           v-model.number="categoryLimit"
           :input-text-validate="($v.categoryLimit.$dirty && !$v.categoryLimit.required)
             || ($v.categoryLimit.$dirty && !$v.categoryLimit.minValue)"
@@ -49,6 +49,7 @@
 import { required, minValue } from "vuelidate/lib/validators"
 import FormInputField from "../formComponents/FormInputField.vue"
 import FormButton from "../formComponents/FormButton.vue"
+import { localizeFilter } from "@/filters/localize.filter"
 
 export default {
   name: "CategoryEdit",
@@ -89,6 +90,9 @@ export default {
     categoryLimit: { required, minValue: minValue(10) }
   },
   methods: {
+    localize(value) {
+      return localizeFilter(value)
+    },
     async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch()

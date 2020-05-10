@@ -1,16 +1,19 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>{{ 'RecordHistory' | localizeFilter }}</h3>
+      <h3>{{ 'Menu_History' | localizeFilter }}</h3>
     </div>
-
     <HistoryChart
       v-if="categories.length"
       :chart-data="setupChart"
     />
-
     <Loader v-if="loading"/>
-    <p v-else-if="!records.length" class="center">Записів не знайдено <router-link to="/record">Додати запис</router-link></p>
+    <p v-else-if="!records.length" class="center">
+      {{ 'NoRecords' | localizeFilter }}
+      <router-link to="/record">
+        {{ 'AddFirst' | localizeFilter }}
+      </router-link>
+    </p>
     <section v-else>
       <HistoryTable
         :records="activeItems"
@@ -19,8 +22,8 @@
         v-model="page"
         :page-count="pageCount"
         :click-handler="changePageHandler"
-        :prev-text="'Prev' | localizeFilter"
-        :next-text="'Next' | localizeFilter"
+        :prev-text="'Back' | localizeFilter"
+        :next-text="'Forward' | localizeFilter"
         :container-class="'pagination'"
         :page-class="'waves-effect'"
       />
@@ -32,6 +35,7 @@
 import paginationMixin from "@/mixins/pagination.mixin"
 import HistoryChart from "@/components/historyComponents/HistoryChart.vue"
 import HistoryTable from "@/components/historyComponents/HistoryTable.vue"
+import { localizeFilter } from "@/filters/localize.filter"
 
 export default {
   name: "History",
@@ -50,7 +54,7 @@ export default {
       return {
         labels: this.categories.map(category => category.title),
         datasets: [{
-            label: 'Витрати за категоріями',
+            label: localizeFilter('SpentByCategories'),
             data: this.categories.map(category => {
               return this.records.reduce((total, record) => {
                 if (record.categoryId === category.id && record.type === 'outcome') total += +record.sum
@@ -79,7 +83,7 @@ export default {
           ...record,
           categoryName: this.categories.find(category => category.id === record.categoryId).title,
           recordType: record.type === 'income' ? "green" : "red",
-          recordTypeText: record.type === 'income' ? "Дохід" : "Витрати",
+          recordTypeText: record.type === 'income' ? localizeFilter('Income') : localizeFilter('Outcome'),
         }
       }))
     },

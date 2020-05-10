@@ -32,7 +32,7 @@
               link-tag="li"
               link-to="/login?message=logout"
               @click.native="logout"
-              :link-title="'Logout' | localizeFilter"
+              :link-title="'Exit' | localizeFilter"
               :link-custom-class="navbarLinkClasses"
               icon-name="assignment_return"
               :icon-custom-class="navbarIconClasses"

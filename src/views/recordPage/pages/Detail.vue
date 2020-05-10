@@ -3,7 +3,7 @@
     <Loader v-if="loading"/>
     <div v-else-if="record">
       <div class="breadcrumb-wrap">
-        <router-link to="/history" class="breadcrumb">Історія</router-link>
+        <router-link to="/history" class="breadcrumb">{{ 'History_Title' | localizeFilter }}</router-link>
         <a @click.pevent class="breadcrumb">
           {{ record.recordTypeText }}
         </a>
@@ -15,9 +15,9 @@
             :class="[record.recordType]"
           >
             <div class="card-content white-text">
-              <p>Опис: {{ record.description }}</p>
-              <p>Сума: {{ record.sum | currencyFilter() }}</p>
-              <p>Категорія: {{ record.categoryName }}</p>
+              <p>{{ 'Description' | localizeFilter }}: {{ record.description }}</p>
+              <p>{{ 'Sum' | localizeFilter }}: {{ record.sum | currencyFilter() }}</p>
+              <p>{{ 'Category' | localizeFilter }}: {{ record.categoryName }}</p>
 
               <small>{{ record.date | dateTimeFilter('datetime') }}</small>
             </div>
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <p v-else class="center">Запис з id={{ $route.params.id }} не знайдено <router-link to="/record">Додати запис</router-link></p>
+    <p v-else class="center">{{ 'RecordOf' | localizeFilter }} id={{ $route.params.id }} {{ 'NotFound' | localizeFilter }} <router-link to="/record">{{ 'AddFirst' | localizeFilter }}</router-link></p>
   </div>
 </template>
 
@@ -47,7 +47,7 @@ export default {
         ...record,
         categoryName: categoryOfRecord.title,
         recordType: record.type === 'income' ? "green" : "red",
-        recordTypeText: record.type === 'income' ? "Дохід" : "Витрати"
+        recordTypeText: record.type === 'income' ? localizeFilter('Income') : localizeFilter('Outcome')
       }
     } catch (error) {
       this.record = null

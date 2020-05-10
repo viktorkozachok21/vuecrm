@@ -5,7 +5,7 @@
       <h4>{{ getActiveUserInfo.account | currencyFilter }}</h4>
     </div>
     <Loader v-if="loading"/>
-    <p v-else-if="!categories.length" class="center">Категорій не знайдено <router-link to="/categories">Додати нову категорію</router-link></p>
+    <p v-else-if="!categories.length" class="center">{{ 'NoCategories' | localizeFilter }} <router-link to="/categories">{{ 'AddFirst' | localizeFilter }}</router-link></p>
     <section v-else>
       <div
         v-for="category in categories"
@@ -30,6 +30,7 @@
 <script>
 import { mapGetters } from "vuex"
 import { currencyFilter } from "@/filters/currency.filter"
+import { localizeFilter } from "@/filters/localize.filter"
 
 export default {
   name: "Planning",
@@ -59,7 +60,7 @@ export default {
           : 'red'
 
       const tooltipValue = category.limit - spentSum
-      const tooltip = `${tooltipValue < 0 ? 'Перевищено на' : 'Залишилося:'} ${currencyFilter(Math.abs(tooltipValue))}`
+      const tooltip = `${tooltipValue < 0 ? localizeFilter('MoreThan') : localizeFilter('Stayed')} ${currencyFilter(Math.abs(tooltipValue))}`
 
       return {
         ...category,
