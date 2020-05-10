@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     ratesBase() {
-      return this.$store.getters.getActiveUserInfo.account / (this.rates['UAH'] / this.rates['EUR'])
+      return this.$store.getters.getActiveUserInfo.account / (this.rates['UAH'] / this.rates['USD'])
     }
   },
   methods: {
