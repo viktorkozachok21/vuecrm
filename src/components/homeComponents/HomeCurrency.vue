@@ -20,7 +20,7 @@
             :key="cur"
           >
             <td>{{ cur }}</td>
-            <td>{{ rates[cur].toFixed(2) }}</td>
+            <td>{{ rates[cur] }}</td>
             <td>{{ date | dateTimeFilter('date') }}</td>
           </tr>
           </tbody>
