@@ -10,7 +10,7 @@
 
     <Loader v-if="loading"/>
 
-    <p v-else-if="!records.length" class="center">Записів не знайдено <router-link to="/record">Додати новий запис</router-link></p>
+    <p v-else-if="!records.length" class="center">Записів не знайдено <router-link to="/record">Додати запис</router-link></p>
 
     <section v-else>
       <HistoryTable
@@ -35,8 +35,6 @@ export default {
     // this.records = await this.$store.dispatch('fetchRecordsForActiveUser')
     const records = await this.$store.dispatch('fetchRecordsForActiveUser')
     this.categories = await this.$store.dispatch('fetchCategoriesForActiveUser')
-
-    console.log(records)
 
     this.records = records.map(record => {
       return {
