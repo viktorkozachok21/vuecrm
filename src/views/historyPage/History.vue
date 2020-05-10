@@ -1,49 +1,58 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История записей</h3>
+      <h3>Історія записів</h3>
     </div>
 
     <div class="history-chart">
       <canvas></canvas>
     </div>
 
-    <section>
-      <table>
-        <thead>
-        <tr>
-          <th>#</th>
-          <th>Сумма</th>
-          <th>Дата</th>
-          <th>Категория</th>
-          <th>Тип</th>
-          <th>Открыть</th>
-        </tr>
-        </thead>
+    <Loader v-if="loading"/>
 
-        <tbody>
-        <tr>
-          <td>1</td>
-          <td>1212</td>
-          <td>12.12.32</td>
-          <td>name</td>
-          <td>
-            <span class="white-text badge red">Расход</span>
-          </td>
-          <td>
-            <button class="btn-small btn">
-              <i class="material-icons">open_in_new</i>
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+    <p v-else-if="!records.length" class="center">Записів не знайдено <router-link to="/record">Додати новий запис</router-link></p>
+
+    <section v-else>
+      <HistoryTable
+        :records="records"
+      />
     </section>
   </div>
 </template>
 
 <script>
+import HistoryChart from "@/components/historyComponents/HistoryChart.vue"
+import HistoryTable from "@/components/historyComponents/HistoryTable.vue"
+
 export default {
+  name: "History",
+  data: () => ({
+    loading: true,
+    records: [],
+    categories: [],
+  }),
+  async mounted() {
+    // this.records = await this.$store.dispatch('fetchRecordsForActiveUser')
+    const records = await this.$store.dispatch('fetchRecordsForActiveUser')
+    this.categories = await this.$store.dispatch('fetchCategoriesForActiveUser')
+
+    console.log(records)
+
+    this.records = records.map(record => {
+      return {
+        ...record,
+        categoryName: this.categories.find(category => category.id === record.categoryId).title,
+        recordType: record.type === 'income' ? "green" : "red",
+        recordTypeText: record.type === 'income' ? "Дохід" : "Витрати",
+      }
+    })
+
+    this.loading = false
+  },
+  components: {
+    HistoryChart,
+    HistoryTable
+  }
 }
 </script>
 
