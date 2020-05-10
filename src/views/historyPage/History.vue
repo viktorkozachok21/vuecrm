@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Історія записів</h3>
+      <h3>{{ 'RecordHistory' | localizeFilter }}</h3>
     </div>
 
     <HistoryChart
@@ -19,8 +19,8 @@
         v-model="page"
         :page-count="pageCount"
         :click-handler="changePageHandler"
-        :prev-text="'Попередня'"
-        :next-text="'Наступна'"
+        :prev-text="'Prev' | localizeFilter"
+        :next-text="'Next' | localizeFilter"
         :container-class="'pagination'"
         :page-class="'waves-effect'"
       />

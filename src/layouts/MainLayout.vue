@@ -7,6 +7,7 @@
       />
       <Sidebar
         :isOpen="showSidebar"
+        :key="locale"
       />
       <main
         class="app-content"
@@ -58,6 +59,9 @@ export default {
   computed: {
     authError() {
       return this.$store.getters.getAuthError
+    },
+    locale() {
+      return this.$store.getters.getActiveUserInfo.locale
     }
   },
   watch: {

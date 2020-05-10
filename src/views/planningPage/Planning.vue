@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Планування</h3>
+      <h3>{{ 'Menu_Planning' | localizeFilter }}</h3>
       <h4>{{ getActiveUserInfo.account | currencyFilter }}</h4>
     </div>
     <Loader v-if="loading"/>

@@ -1,3 +1,5 @@
+import store from "../store"
+
 export function dateTimeFilter(value, format = "date") {
   const options = {}
 
@@ -13,5 +15,6 @@ export function dateTimeFilter(value, format = "date") {
     options.second = '2-digit'
   }
 
-  return new Intl.DateTimeFormat("uk-UA", options).format(new Date(value))
+  const locale = store.getters.getActiveUserInfo.locale || "uk-UA"
+  return new Intl.DateTimeFormat(locale, options).format(new Date(value))
 }

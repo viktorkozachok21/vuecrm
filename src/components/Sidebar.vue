@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import NavigationLink from "./links/NavigationLink.vue";
+import NavigationLink from "./links/NavigationLink.vue"
+import { localizeFilter } from "@/filters/localize.filter"
 
 export default {
   name: "Sidebar",
@@ -25,11 +26,11 @@ export default {
   },
   data: () => ({
     sidebarLinks: [
-      { title: "Рахунок", url: "/", exact: true },
-      { title: "Історія", url: "/history" },
-      { title: "Планування", url: "/planning" },
-      { title: "Новий запис", url: "/record" },
-      { title: "Категорії", url: "/categories" }
+      { title: localizeFilter('Menu_Account'), url: "/", exact: true },
+      { title: localizeFilter('Menu_History'), url: "/history" },
+      { title: localizeFilter('Menu_Planning'), url: "/planning" },
+      { title: localizeFilter('Menu_NewRecord'), url: "/record" },
+      { title: localizeFilter('Menu_Categories'), url: "/categories" }
     ],
     sidebarLinksClasses: [
       "waves-effect",

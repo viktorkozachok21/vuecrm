@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Новий запис</h3>
+      <h3>{{ 'Menu_NewRecord' | localizeFilter }}</h3>
     </div>
     <Loader v-if="loading"/>
     <p v-else-if="!categories.length" class="center">
@@ -67,7 +67,7 @@
       />
       <FormButton
         button-type="submit"
-        button-title="Створити"
+        :button-title="'Create' | localizeFilter"
         icon-name="send"
       />
     </form>

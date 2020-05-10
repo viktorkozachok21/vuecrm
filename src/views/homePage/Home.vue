@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Рахунок</h3>
+      <h3>{{ 'Account' | localizeFilter }}</h3>
       <FormButton
         :button-custom-class="buttonCustomClass"
         icon-name="refresh"

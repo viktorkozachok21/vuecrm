@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Створити</h4>
+        <h4>{{ 'Create' | localizeFilter }}</h4>
       </div>
       <form @submit.prevent="submitHandler">
         <FormInputField
@@ -25,7 +25,7 @@
         />
         <FormButton
           button-type="submit"
-          button-title="Створити"
+          :button-title="'Create' | localizeFilter"
           icon-name="send"
         />
       </form>

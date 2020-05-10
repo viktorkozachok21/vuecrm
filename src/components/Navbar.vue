@@ -22,7 +22,7 @@
             <NavigationLink
               link-tag="li"
               link-to="/profile"
-              link-title="Профіль"
+              :link-title="'ProfileTitle' | localizeFilter"
               :link-custom-class="navbarLinkClasses"
               icon-name="account_circle"
               :icon-custom-class="navbarIconClasses"
@@ -32,7 +32,7 @@
               link-tag="li"
               link-to="/login?message=logout"
               @click.native="logout"
-              link-title="Вийти"
+              :link-title="'Logout' | localizeFilter"
               :link-custom-class="navbarLinkClasses"
               icon-name="assignment_return"
               :icon-custom-class="navbarIconClasses"

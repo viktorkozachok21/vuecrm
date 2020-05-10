@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Категорії</h3>
+      <h3>{{ 'Menu_Categories' | localizeFilter }}</h3>
     </div>
     <section>
       <Loader v-if="loading"/>

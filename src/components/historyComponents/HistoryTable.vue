@@ -3,11 +3,11 @@
     <thead>
     <tr>
       <th>#</th>
-      <th>Сума</th>
-      <th>Дата</th>
-      <th>Категорія</th>
-      <th>Тип</th>
-      <th>Переглянути</th>
+      <th>{{ 'Sum' | localizeFilter }}</th>
+      <th>{{ 'Date' | localizeFilter }}</th>
+      <th>{{ 'Category' | localizeFilter }}</th>
+      <th>{{ 'Type' | localizeFilter }}</th>
+      <th>{{ 'Detail' | localizeFilter }}</th>
     </tr>
     </thead>
 

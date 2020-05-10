@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Редактировать</h4>
+        <h4>{{ 'Update' | localizeFilter }}</h4>
       </div>
       <form @submit.prevent="submitHandler">
         <div class="input-field">
@@ -37,7 +37,7 @@
         />
         <FormButton
           button-type="submit"
-          button-title="Оновити"
+          :button-title="'Update' | localizeFilter"
           icon-name="send"
         />
       </form>
