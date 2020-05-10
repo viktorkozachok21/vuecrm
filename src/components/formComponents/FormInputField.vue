@@ -38,6 +38,9 @@ export default {
         this.$emit('input', val)
       }
     }
+  },
+  mounted() {
+    setTimeout(() => M.updateTextFields(), 0)
   }
 };
 </script>

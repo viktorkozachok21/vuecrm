@@ -3,11 +3,13 @@
     <div class="page-title">
       <h3>Новий запис</h3>
     </div>
-
     <Loader v-if="loading"/>
-
-    <p v-else-if="!categories.length" class="center">Категорій не знайдено <router-link to="/categories">Додати нову категорію</router-link></p>
-
+    <p v-else-if="!categories.length" class="center">
+      Категорій не знайдено
+      <router-link to="/categories">
+        Додати нову категорію
+      </router-link>
+    </p>
     <form v-else class="form" @submit.prevent="submitHandler">
       <div class="input-field">
         <select ref="categoriesSelect" v-model="currentCategory">
@@ -50,10 +52,10 @@
         input-type="number"
         input-label="Сума"
         :input-help-text="!$v.recordSum.required ? 'Введіть суму'
-        : `Мінімальне значення ${$v.recordSum.$params.minValue.min}`"
+          : `Мінімальне значення ${$v.recordSum.$params.minValue.min}`"
         v-model.trim="recordSum"
         :input-text-validate="($v.recordSum.$dirty && !$v.recordSum.required)
-        || ($v.recordSum.$dirty && !$v.recordSum.minValue)"
+          || ($v.recordSum.$dirty && !$v.recordSum.minValue)"
       />
       <FormInputField
         input-id="record-description"
@@ -80,6 +82,10 @@ import FormButton from "@/components/formComponents/FormButton.vue"
 
 export default {
   name: "Record",
+  components: {
+    FormInputField,
+    FormButton
+  },
   data: () => ({
     loading: true,
     categories: [],
@@ -89,25 +95,22 @@ export default {
     recordSum: 10,
     recordDescription: ""
   }),
-  async mounted() {
-    this.categories = await this.$store.dispatch('fetchCategoriesForActiveUser')
-    this.loading = false
-    if (this.categories.length) this.currentCategory = this.categories[0].id
-    setTimeout(() => {
-      this.categoriesSelect = M.FormSelect.init(this.$refs.categoriesSelect)
-      M.updateTextFields()
-    }, 0)
-  },
-  validations: {
-    recordSum: { required, minValue: minValue(1) },
-    recordDescription: { required }
-  },
   computed: {
     ...mapGetters(['getActiveUserInfo']),
     canCreateRecord() {
       if (this.recordType === 'income') return true
       return this.getActiveUserInfo.account >= this.recordSum
     }
+  },
+  async mounted() {
+    this.categories = await this.$store.dispatch('fetchCategoriesForActiveUser')
+    this.loading = false
+    if (this.categories.length) this.currentCategory = this.categories[0].id
+    setTimeout(() => this.categoriesSelect = M.FormSelect.init(this.$refs.categoriesSelect), 0)
+  },
+  validations: {
+    recordSum: { required, minValue: minValue(1) },
+    recordDescription: { required }
   },
   methods: {
     async submitHandler() {
@@ -140,19 +143,10 @@ export default {
       } else {
         this.$message(`Недостатньо коштів на рахунку (${this.recordSum - this.getActiveUserInfo.account})`)
       }
-
-
     }
   },
   beforeDestroy() {
     if (this.categoriesSelect && this.categoriesSelect.destroy) this.categoriesSelect.destroy()
-  },
-  components: {
-    FormInputField,
-    FormButton
   }
 }
 </script>
-
-<style lang="css" scoped>
-</style>

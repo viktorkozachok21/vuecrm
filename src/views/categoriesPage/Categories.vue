@@ -30,6 +30,10 @@ import CategoryEdit from "@/components/categoriesComponents/CategoryEdit.vue"
 
 export default {
   name: "Categories",
+  components: {
+    CategoryCreate,
+    CategoryEdit
+  },
   data: () => ({
     categories: [],
     loading: true,
@@ -49,10 +53,6 @@ export default {
       this.categories[index].limit = category.limit
       this.updateCount++
     }
-  },
-  components: {
-    CategoryCreate,
-    CategoryEdit
   }
 }
 </script>

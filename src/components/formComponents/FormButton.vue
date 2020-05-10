@@ -1,14 +1,17 @@
 <template>
-  <div>
-    <button
-      class="btn waves-effect waves-light"
-      :class="[...buttonClasses]"
-      :type="buttonType"
+  <button
+    class="btn waves-effect waves-light teal darken-3"
+    :class="[...buttonCustomClass]"
+    :type="buttonType"
+  >
+    <span :class="{ 'btn-title': buttonTitle }">{{ buttonTitle }}</span>
+    <i
+      class="material-icons"
+      :class="[...iconCustomClass]"
     >
-      {{ buttonTitle }}
-      <i class="material-icons right">{{ iconName }}</i>
-    </button>
-  </div>
+      {{ iconName }}
+    </i>
+  </button>
 </template>
 
 <script>
@@ -17,11 +20,20 @@ export default {
   props: {
     buttonType: String,
     buttonTitle: String,
-    buttonClasses: Array,
-    iconName: String
+    buttonCustomClass: Array,
+    iconName: String,
+    iconCustomClass: Array
   }
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .btn-title {
+    margin-right: .5rem;
+  }
+}
 </style>

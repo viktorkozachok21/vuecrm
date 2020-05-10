@@ -3,7 +3,6 @@
     <div class="card teal darken-3 bill-card">
       <div class="card-content white-text">
         <span class="card-title">Рахунок в валюті</span>
-
         <p
           v-for="cur in currencies"
           :key="cur"

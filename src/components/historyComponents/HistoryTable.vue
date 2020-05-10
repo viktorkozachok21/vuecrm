@@ -29,7 +29,7 @@
         </span>
       </td>
       <td class="center">
-        <ButtonWithIcon
+        <FormButton
           v-tooltip-directive="'Переглянути запис'"
           :button-custom-class="buttonCustomClass"
           icon-name="open_in_new"
@@ -42,10 +42,13 @@
 </template>
 
 <script>
-import ButtonWithIcon from "../ButtonWithIcon.vue"
+import FormButton from "../formComponents/FormButton.vue"
 
 export default {
   name: "HistoryTable",
+  components: {
+    FormButton
+  },
   props: {
     records: {
       required: true,
@@ -57,12 +60,6 @@ export default {
     buttonCustomClass: [
       "btn-small"
     ]
-  }),
-  components: {
-    ButtonWithIcon
-  }
+  })
 }
 </script>
-
-<style lang="css" scoped>
-</style>

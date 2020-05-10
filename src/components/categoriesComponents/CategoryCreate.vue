@@ -18,10 +18,10 @@
           input-type="number"
           input-label="Ліміт бюджету"
           :input-help-text="!$v.categoryLimit.required ? 'Введіть ліміт'
-          : `Мінімальне значення ${$v.categoryLimit.$params.minValue.min}`"
+            : `Мінімальне значення ${$v.categoryLimit.$params.minValue.min}`"
           v-model.number="categoryLimit"
           :input-text-validate="($v.categoryLimit.$dirty && !$v.categoryLimit.required)
-          || ($v.categoryLimit.$dirty && !$v.categoryLimit.minValue)"
+            || ($v.categoryLimit.$dirty && !$v.categoryLimit.minValue)"
         />
         <FormButton
           button-type="submit"
@@ -40,13 +40,14 @@ import FormButton from "../formComponents/FormButton.vue"
 
 export default {
   name: "CategoryCreate",
+  components: {
+    FormInputField,
+    FormButton
+  },
   data: () => ({
     categoryTitle: "",
     categoryLimit: 100
   }),
-  mounted() {
-    M.updateTextFields()
-  },
   validations: {
     categoryTitle: { required },
     categoryLimit: { required, minValue: minValue(10) }
@@ -71,10 +72,6 @@ export default {
       } catch (error) {}
 
     }
-  },
-  components: {
-    FormInputField,
-    FormButton
   }
 }
 </script>

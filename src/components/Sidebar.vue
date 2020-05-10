@@ -1,21 +1,25 @@
 <template>
   <ul class="sidenav app-sidenav" :class="{ open: isOpen }">
-    <LinkWithoutIcon
+    <NavigationLink
       v-for="link in sidebarLinks"
       :key="link.url"
       link-tag="li"
       :link-to="link.url"
       :link-exact="link.exact"
       :link-title="link.title"
-      :link-class-list="sidebarLinksClasses"
+      :link-custom-class="sidebarLinksClasses"
     />
   </ul>
 </template>
 
 <script>
-import LinkWithoutIcon from "./links/LinkWithoutIcon.vue";
+import NavigationLink from "./links/NavigationLink.vue";
 
 export default {
+  name: "Sidebar",
+  components: {
+    NavigationLink
+  },
   props: {
     isOpen: Boolean
   },
@@ -32,12 +36,6 @@ export default {
       "waves-orange",
       "pointer"
     ]
-  }),
-  components: {
-    LinkWithoutIcon
-  }
+  })
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

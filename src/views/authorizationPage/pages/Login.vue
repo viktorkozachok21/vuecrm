@@ -7,32 +7,33 @@
         input-type="text"
         input-label="Email"
         :input-help-text="!$v.email.required ? 'Поле Email не може бути порожнім'
-        : 'Введіть коректний Email'"
+          : 'Введіть коректний Email'"
         v-model.trim="email"
         :input-text-validate="($v.email.$dirty && !$v.email.required)
-        || ($v.email.$dirty && !$v.email.email)"
+          || ($v.email.$dirty && !$v.email.email)"
       />
       <FormInputField
         input-id="password"
         input-type="password"
         input-label="Пароль"
         :input-help-text="!$v.password.required ? 'Введіть пароль'
-        : `Мінімальна довжина паролю ${$v.password.$params.minLength.min} символів. Зараз ${password.length}`"
+          : `Мінімальна довжина паролю ${$v.password.$params.minLength.min} символів. Зараз ${password.length}`"
         v-model.trim="password"
         :input-text-validate="($v.password.$dirty && !$v.password.required)
-        || ($v.password.$dirty && !$v.password.minLength)"
+          || ($v.password.$dirty && !$v.password.minLength)"
       />
     </div>
     <div class="card-action">
       <FormButton
         button-type="submit"
         button-title="Увійти"
-        :button-classes="buttonClasses"
+        :button-custom-class="['auth-submit']"
         icon-name="send"
+        :icon-custom-class="['right']"
       />
       <p class="center">
         Немає облікового запису?
-        <LinkWithoutIcon
+        <NavigationLink
           link-to="/register"
           link-title="Зареєструватись"
         />
@@ -45,11 +46,16 @@
 import { email, required, minLength } from "vuelidate/lib/validators";
 import FormInputField from "@/components/formComponents/FormInputField.vue";
 import FormButton from "@/components/formComponents/FormButton.vue";
-import LinkWithoutIcon from "@/components/links/LinkWithoutIcon.vue";
+import NavigationLink from "@/components/links/NavigationLink.vue";
 import messages from "@/utils/messages";
 
 export default {
   name: "Login",
+  components: {
+    FormInputField,
+    FormButton,
+    NavigationLink
+  },
   data: () => ({
     email: "",
     password: "",
@@ -81,11 +87,6 @@ export default {
         this.$router.push("/")
       } catch (error) {}
     }
-  },
-  components: {
-    FormInputField,
-    FormButton,
-    LinkWithoutIcon
   }
 }
 </script>

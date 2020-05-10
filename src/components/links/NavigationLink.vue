@@ -4,12 +4,13 @@
       :tag="linkTag"
       active-class="active orange lighten-3"
       :to="linkTo"
+      :exact="linkExact"
     >
       <a href="#"
-        :class="[...linkClassList]"
+        :class="[...linkCustomClass]"
       >
         <i class="material-icons"
-          :class="[...iconClassList]"
+          :class="[...iconCustomClass]"
         >
           {{ iconName }}
         </i>
@@ -25,14 +26,11 @@ export default {
   props: {
     linkTo: String,
     linkTag: String,
+    linkExact: Boolean,
     linkTitle: String,
-    linkClassList: Array,
+    linkCustomClass: Array,
     iconName: String,
-    iconClassList: Array
+    iconCustomClass: Array
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

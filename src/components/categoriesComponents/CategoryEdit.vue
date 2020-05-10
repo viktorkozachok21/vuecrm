@@ -4,7 +4,6 @@
       <div class="page-subtitle">
         <h4>Редактировать</h4>
       </div>
-
       <form @submit.prevent="submitHandler">
         <div class="input-field">
           <select ref="categoriesSelect" v-model="currentCategory">
@@ -18,7 +17,6 @@
           </select>
           <label>Оберіть категорію</label>
         </div>
-
         <FormInputField
           input-id="category-title"
           input-type="text"
@@ -32,10 +30,10 @@
           input-type="number"
           input-label="Ліміт бюджету"
           :input-help-text="!$v.categoryLimit.required ? 'Введіть ліміт'
-          : `Мінімальне значення ${$v.categoryLimit.$params.minValue.min}`"
+            : `Мінімальне значення ${$v.categoryLimit.$params.minValue.min}`"
           v-model.number="categoryLimit"
           :input-text-validate="($v.categoryLimit.$dirty && !$v.categoryLimit.required)
-          || ($v.categoryLimit.$dirty && !$v.categoryLimit.minValue)"
+            || ($v.categoryLimit.$dirty && !$v.categoryLimit.minValue)"
         />
         <FormButton
           button-type="submit"
@@ -54,6 +52,10 @@ import FormButton from "../formComponents/FormButton.vue"
 
 export default {
   name: "CategoryEdit",
+  components: {
+    FormInputField,
+    FormButton
+  },
   props: {
     categories: {
       type: Array,
@@ -74,7 +76,6 @@ export default {
   },
   mounted() {
     this.categoriesSelect = M.FormSelect.init(this.$refs.categoriesSelect)
-    M.updateTextFields()
   },
   watch: {
     currentCategory(categoryId) {
@@ -110,10 +111,6 @@ export default {
   },
   beforeDestroy() {
     if (this.categoriesSelect && this.categoriesSelect.destroy) this.categoriesSelect.destroy()
-  },
-  components: {
-    FormInputField,
-    FormButton
   }
 }
 </script>

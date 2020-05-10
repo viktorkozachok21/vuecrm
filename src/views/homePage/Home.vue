@@ -2,16 +2,13 @@
   <div>
     <div class="page-title">
       <h3>Рахунок</h3>
-
-      <ButtonWithIcon
+      <FormButton
         :button-custom-class="buttonCustomClass"
         icon-name="refresh"
         @click.native="refreshCurrency"
         />
       </div>
-
     <Loader v-if="loading"/>
-
     <div v-else class="row">
       <HomeAccount
         :rates="currency.rates"
@@ -27,10 +24,15 @@
 <script>
 import HomeAccount from "@/components/homeComponents/HomeAccount.vue"
 import HomeCurrency from "@/components/homeComponents/HomeCurrency.vue"
-import ButtonWithIcon from "@/components/ButtonWithIcon.vue"
+import FormButton from "@/components/formComponents/FormButton.vue"
 
 export default {
   name: "Home",
+  components: {
+    HomeAccount,
+    HomeCurrency,
+    FormButton
+  },
   data: () => ({
     loading: true,
     currency: null,
@@ -48,11 +50,6 @@ export default {
       this.currency = await this.$store.dispatch('fetchUserCurrency')
       this.loading = false
     }
-  },
-  components: {
-    HomeAccount,
-    HomeCurrency,
-    ButtonWithIcon
   }
 };
 </script>

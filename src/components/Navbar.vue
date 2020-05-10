@@ -7,7 +7,6 @@
         </a>
         <span class="black-text">{{ todayIs | dateTimeFilter("datetime") }}</span>
       </div>
-
       <ul class="right">
         <li>
           <a class="dropdown-trigger black-text active-user-name"
@@ -20,23 +19,23 @@
           </a>
 
           <ul id="dropdown" class="dropdown-content">
-            <LinkWithIcon
+            <NavigationLink
               link-tag="li"
               link-to="/profile"
               link-title="Профіль"
-              :link-class-list="navbarLinkClasses"
-              :icon-class-list="navbarIconClasses"
+              :link-custom-class="navbarLinkClasses"
               icon-name="account_circle"
+              :icon-custom-class="navbarIconClasses"
             />
             <li class="divider" tabindex="-1"></li>
-            <LinkWithIcon
+            <NavigationLink
               link-tag="li"
               link-to="/login?message=logout"
               @click.native="logout"
               link-title="Вийти"
-              :link-class-list="navbarLinkClasses"
-              :icon-class-list="navbarIconClasses"
+              :link-custom-class="navbarLinkClasses"
               icon-name="assignment_return"
+              :icon-custom-class="navbarIconClasses"
             />
           </ul>
         </li>
@@ -46,9 +45,13 @@
 </template>
 
 <script>
-import LinkWithIcon from "./links/LinkWithIcon.vue";
+import NavigationLink from "./links/NavigationLink.vue";
 
 export default {
+  name: "Navbar",
+  components: {
+    NavigationLink
+  },
   data: () => ({
     todayIs: new Date(),
     dateInterval: null,
@@ -82,9 +85,6 @@ export default {
   beforeDestroy() {
     clearInterval(this.todayInterval)
     if (this.userDropdown && this.userDropdown.destroy) this.userDropdown.destroy()
-  },
-  components: {
-    LinkWithIcon
   }
 }
 </script>
@@ -93,7 +93,6 @@ export default {
 #dropdown {
   transform: translateY(-4.3rem);
 }
-
 .active-user-name {
   min-width: 150px;
 }

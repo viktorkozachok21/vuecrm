@@ -18,11 +18,11 @@
       </main>
 
       <div class="fixed-action-btn">
-        <LinkWithIcon
+        <NavigationLink
           link-to="/record"
-          :link-class-list="mainLinkClassList"
-          :icon-class-list="mainIconClasses"
+          :link-custom-class="mainLinkClassList"
           icon-name="add"
+          :icon-custom-class="mainIconClasses"
         />
       </div>
     </div>
@@ -30,13 +30,18 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import Sidebar from "@/components/Sidebar.vue";
-import LinkWithIcon from "@/components/links/LinkWithIcon.vue";
+import Navbar from "@/components/Navbar.vue"
+import Sidebar from "@/components/Sidebar.vue"
+import NavigationLink from "@/components/links/NavigationLink.vue"
 import messages from "@/utils/messages"
 
 export default {
   name: "MainLayout",
+  components: {
+    Navbar,
+    Sidebar,
+    NavigationLink
+  },
   data: () => ({
     showSidebar: false,
     loading: true,
@@ -66,14 +71,6 @@ export default {
     }
 
     this.loading = false
-  },
-  components: {
-    Navbar,
-    Sidebar,
-    LinkWithIcon
   }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

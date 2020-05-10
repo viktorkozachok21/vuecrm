@@ -7,20 +7,20 @@
         input-type="text"
         input-label="Email"
         :input-help-text="!$v.email.required ? 'Поле Email не може бути порожнім'
-        : 'Введіть коректний Email'"
+          : 'Введіть коректний Email'"
         v-model.trim="email"
         :input-text-validate="($v.email.$dirty && !$v.email.required)
-        || ($v.email.$dirty && !$v.email.email)"
+          || ($v.email.$dirty && !$v.email.email)"
       />
       <FormInputField
         input-id="password"
         input-type="password"
         input-label="Пароль"
         :inputHelpText="!$v.password.required ? 'Введіть пароль'
-        : `Мінімальна довжина паролю ${$v.password.$params.minLength.min} символів. Зараз ${password.length}`"
+          : `Мінімальна довжина паролю ${$v.password.$params.minLength.min} символів. Зараз ${password.length}`"
         v-model.trim="password"
         :input-text-validate="($v.password.$dirty && !$v.password.required)
-        || ($v.password.$dirty && !$v.password.minLength)"
+          || ($v.password.$dirty && !$v.password.minLength)"
       />
       <FormInputField
         input-id="username"
@@ -41,12 +41,13 @@
       <FormButton
         button-type="submit"
         button-title="Зареєструватись"
-        :button-classes="buttonClasses"
+        :button-custom-class="buttonClasses"
         icon-name="send"
+        :icon-custom-class="['right']"
       />
       <p class="center">
         Вже зареєстровані?
-        <LinkWithoutIcon
+        <NavigationLink
           link-to="/login"
           link-title="Вхід"
         />
@@ -59,10 +60,15 @@
 import { email, required, minLength } from "vuelidate/lib/validators";
 import FormInputField from "@/components/formComponents/FormInputField.vue";
 import FormButton from "@/components/formComponents/FormButton.vue";
-import LinkWithoutIcon from "@/components/links/LinkWithoutIcon.vue";
+import NavigationLink from "@/components/links/NavigationLink.vue";
 
 export default {
   name: "Register",
+  components: {
+    FormInputField,
+    FormButton,
+    NavigationLink
+  },
   data: () => ({
     email: "",
     password: "",
@@ -96,11 +102,6 @@ export default {
         this.$router.push("/")
       } catch (error) {}
     }
-  },
-  components: {
-    FormInputField,
-    FormButton,
-    LinkWithoutIcon
   }
 }
 </script>

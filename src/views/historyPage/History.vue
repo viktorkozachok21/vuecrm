@@ -35,6 +35,10 @@ import HistoryTable from "@/components/historyComponents/HistoryTable.vue"
 
 export default {
   name: "History",
+  components: {
+    HistoryChart,
+    HistoryTable
+  },
   mixins: [paginationMixin],
   data: () => ({
     loading: true,
@@ -82,10 +86,6 @@ export default {
     getRandomColor(transparency) {
       return `rgba(${+Math.floor(Math.random() * 255)},${+Math.floor(Math.random() * 255)},${+Math.floor(Math.random() * 255)},${transparency})`
     },
-  },
-  components: {
-    HistoryChart,
-    HistoryTable
   }
 }
 </script>

@@ -4,11 +4,8 @@
       <h3>Планування</h3>
       <h4>{{ getActiveUserInfo.account | currencyFilter }}</h4>
     </div>
-
     <Loader v-if="loading"/>
-
     <p v-else-if="!categories.length" class="center">Категорій не знайдено <router-link to="/categories">Додати нову категорію</router-link></p>
-
     <section v-else>
       <div
         v-for="category in categories"
