@@ -3,17 +3,19 @@ import Vuelidate from "vuelidate";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import Loader from "@/components/Loader";
+import Paginate from "vuejs-paginate";
 import { dateTimeFilter } from "@/filters/dateTime.filter";
 import { currencyFilter } from "@/filters/currency.filter";
 import messagePlugin from "@/utils/message.plugin";
 import tooltipDirective from "@/directives/tooltip.directive";
-import Loader from "@/components/Loader";
 import "./registerServiceWorker";
 import 'materialize-css/dist/js/materialize.min';
 
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+
 
 Vue.config.productionTip = false;
 
@@ -22,7 +24,8 @@ Vue.use(Vuelidate)
 Vue.filter("dateTimeFilter", dateTimeFilter)
 Vue.filter("currencyFilter", currencyFilter)
 Vue.directive("tooltip-directive", tooltipDirective)
-Vue.component('Loader', Loader)
+Vue.component("Loader", Loader)
+Vue.component("Paginate", Paginate)
 
 const firebaseConfig = {
   apiKey: "AIzaSyB44lTZUzlg7ySiNyhMSvNI446tgCGqXm8",
