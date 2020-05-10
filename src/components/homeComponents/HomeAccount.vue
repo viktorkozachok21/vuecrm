@@ -21,8 +21,7 @@ export default {
   data: () => ({
     currencies: [
       'UAH',
-      'USD',
-      'EUR'
+      'USD'
     ]
   }),
   props: {

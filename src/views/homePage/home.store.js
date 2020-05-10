@@ -34,10 +34,10 @@ export default {
         throw error
       }
     },
-    async fetchUserCurrency() {
+    async fetchUserCurrency({ commit }) {
       try {
-        const key = process.env.VUE_APP_API_FIXER
-        const response = await fetch(`http://data.fixer.io/api/latest?access_key=${key}&symbols=USD,EUR,UAH`)
+        const key = process.env.VUE_APP_API
+        const response = await fetch(`https://openexchangerates.org/api/latest.json?app_id=${key}&symbols=USD,EUR,UAH`)
         return await response.json()
       } catch(error) {
         commit('SET_ERROR', error)

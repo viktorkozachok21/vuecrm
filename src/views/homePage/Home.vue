@@ -15,7 +15,7 @@
       />
       <HomeCurrency
         :rates="currency.rates"
-        :date="currency.date"
+        :date="new Date().toISOString()"
       />
     </div>
   </div>
@@ -47,7 +47,6 @@ export default {
   }),
   async mounted() {
     this.currency = await this.$store.dispatch('fetchUserCurrency')
-    console.log(this.currency)
     this.loading = false
   },
   methods: {

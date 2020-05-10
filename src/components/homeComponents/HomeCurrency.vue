@@ -40,8 +40,6 @@ export default {
   data: () => ({
     currencies: [
       'UAH',
-      'USD',
-      'EUR'
     ]
   })
 }
