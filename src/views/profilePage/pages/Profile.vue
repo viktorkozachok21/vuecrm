@@ -37,6 +37,11 @@ import FormButton from "@/components/formComponents/FormButton.vue"
 
 export default {
   name: "Profile",
+  metaInfo() {
+    return {
+      title: this.$title('ProfileTitle')
+    }
+  },
   components: {
     FormInputField,
     FormButton

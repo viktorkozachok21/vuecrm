@@ -64,6 +64,11 @@ import NavigationLink from "@/components/links/NavigationLink.vue";
 
 export default {
   name: "Register",
+  metaInfo() {
+    return {
+      title: this.$title('Register')
+    }
+  },
   components: {
     FormInputField,
     FormButton,

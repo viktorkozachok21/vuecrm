@@ -30,8 +30,15 @@
 </template>
 
 <script>
+import { localizeFilter } from "@/filters/localize.filter"
+
 export default {
   name: "Detail",
+  metaInfo() {
+    return {
+      title: this.$title('OpenRecord')
+    }
+  },
   data: () => ({
     record: null,
     loading: true
@@ -51,6 +58,7 @@ export default {
       }
     } catch (error) {
       this.record = null
+      throw error
     }
 
     this.loading = false

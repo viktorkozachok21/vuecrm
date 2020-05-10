@@ -28,6 +28,11 @@ import FormButton from "@/components/formComponents/FormButton.vue"
 
 export default {
   name: "Home",
+  metaInfo() {
+    return {
+      title: this.$title('Menu_Account')
+    }
+  },
   components: {
     HomeAccount,
     HomeCurrency,

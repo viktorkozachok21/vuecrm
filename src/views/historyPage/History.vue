@@ -39,6 +39,11 @@ import { localizeFilter } from "@/filters/localize.filter"
 
 export default {
   name: "History",
+  metaInfo() {
+    return {
+      title: this.$title('Menu_History')
+    }
+  },
   components: {
     HistoryChart,
     HistoryTable

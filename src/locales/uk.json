@@ -60,7 +60,7 @@
   "AcceptRules": "Погоджуюся з правилами",
   "CreateNewRecord": "Створити новий запис",
   "Logout": "Ви вийшли з системи",
-  "FirstLogin": "Перший вхід",
+  "Login": "Авторизація",
   "NoUserWithEmail": "Не знайдено користувача з вказаним email",
   "WrongPassword": "Не корекний пароль",
   "EmailInUse": "Email вже використовується",
