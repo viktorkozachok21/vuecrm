@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: "NavbarLink",
+  name: "NavigationLink",
   props: {
     linkTo: String,
     linkTag: String,
